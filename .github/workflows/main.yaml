@@ -1,0 +1,17 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  static-analysis:
+    name: StaticAnalysis
+    uses: ./.github/workflows/static-analysis.yaml
+    secrets: inherit
+  build:
+    needs: static-analysis
+    name: Build
+    uses: ./.github/workflows/build.yaml
+    secrets: inherit
